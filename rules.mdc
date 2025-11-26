@@ -1,3 +1,58 @@
 ---
 alwaysApply: true
 ---
+
+## Code Quality Rules
+
+1. **TypeScript Strict Mode**: Always use TypeScript with strict type checking. No `any` types unless absolutely necessary.
+
+2. **ESLint Compliance**: 
+   - Fix all linting errors before committing
+   - Use `npm run lint:fix` to auto-fix issues
+   - No unused variables or imports
+   - Always use proper React hooks dependencies
+
+3. **React Native Best Practices**:
+   - Use functional components with hooks
+   - Properly type all props with TypeScript interfaces
+   - Use StyleSheet.create for all styles
+   - Avoid inline styles unless necessary for dynamic values
+
+4. **Component Structure**:
+   - One component per file
+   - Export default for main component
+   - Use named exports for utilities/types
+   - Keep components focused and single-purpose
+
+5. **Naming Conventions**:
+   - Components: PascalCase (e.g., `LoginScreen.tsx`)
+   - Files: Match component name
+   - Functions: camelCase
+   - Constants: UPPER_SNAKE_CASE
+   - Types/Interfaces: PascalCase with descriptive names
+
+6. **Code Formatting**:
+   - Use 2 spaces for indentation
+   - Use semicolons
+   - Trailing commas in multi-line objects/arrays
+   - Maximum line length: 100 characters
+
+7. **Error Handling**:
+   - Always handle errors appropriately
+   - Use try-catch for async operations
+   - Provide user-friendly error messages
+
+8. **Accessibility**:
+   - Use proper accessibility labels
+   - Ensure proper contrast ratios
+   - Support screen readers
+
+9. **Performance**:
+   - Use React.memo for expensive components
+   - Use useMemo/useCallback when appropriate
+   - Avoid unnecessary re-renders
+
+10. **Theme System**:
+    - Always use theme colors from theme context
+    - Support both light and dark modes
+    - Never hardcode colors
