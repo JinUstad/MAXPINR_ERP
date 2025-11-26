@@ -11,7 +11,7 @@ interface InputProps extends TextInputProps {
   rightIcon?: React.ReactNode;
 }
 
-export const Input: React.FC<InputProps> = ({
+export const Input = React.forwardRef<TextInput, InputProps>(({
   label,
   error,
   containerStyle,
@@ -19,7 +19,7 @@ export const Input: React.FC<InputProps> = ({
   rightIcon,
   style,
   ...textInputProps
-}) => {
+}, ref) => {
   const { theme } = useTheme();
 
   return (
@@ -36,6 +36,7 @@ export const Input: React.FC<InputProps> = ({
       >
         {leftIcon && <View style={styles.leftIcon}>{leftIcon}</View>}
         <TextInput
+          ref={ref}
           style={[
             styles.input,
             {
@@ -53,7 +54,9 @@ export const Input: React.FC<InputProps> = ({
       {error && <Text style={[styles.error, { color: theme.colors.error }]}>{error}</Text>}
     </View>
   );
-};
+});
+
+Input.displayName = 'Input';
 
 const styles = StyleSheet.create({
   container: {

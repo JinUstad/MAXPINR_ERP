@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import {
   View,
   Text,
@@ -7,6 +7,7 @@ import {
   KeyboardAvoidingView,
   Platform,
   TouchableOpacity,
+  TextInput,
 } from 'react-native';
 import { useTheme } from '../hooks/useTheme';
 import { Button } from '../components/Button';
@@ -23,6 +24,7 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({ navigation }) => {
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState<{ email?: string; password?: string }>({});
   const [loading, setLoading] = useState(false);
+  const passwordInputRef = useRef<TextInput>(null);
 
   const validateForm = () => {
     const newErrors: { email?: string; password?: string } = {};
@@ -83,10 +85,14 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({ navigation }) => {
               keyboardType="email-address"
               autoCapitalize="none"
               autoComplete="email"
+              returnKeyType="next"
+              onSubmitEditing={() => passwordInputRef.current?.focus()}
+              blurOnSubmit={false}
               error={errors.email}
             />
 
             <Input
+              ref={passwordInputRef}
               label="Password"
               placeholder="Enter your password"
               value={password}
@@ -94,6 +100,8 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({ navigation }) => {
               secureTextEntry
               autoCapitalize="none"
               autoComplete="password"
+              returnKeyType="done"
+              onSubmitEditing={handleLogin}
               error={errors.password}
             />
 
