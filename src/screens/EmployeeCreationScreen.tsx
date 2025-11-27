@@ -682,60 +682,66 @@ export const EmployeeCreationScreen: React.FC<EmployeeCreationScreenProps> = ({ 
   };
 
   return (
-    <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
-      <View style={[styles.header, { backgroundColor: theme.colors.surface }]}>
-        <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
-          <Text style={[styles.backButtonText, { color: theme.colors.primary }]}>← Back</Text>
-        </TouchableOpacity>
-        <Text style={[styles.headerTitle, { color: theme.colors.text }]}>
-          Create Employee Account
-        </Text>
-        <View style={styles.placeholder} />
-      </View>
-
-      <Stepper steps={STEPS} currentStep={currentStep} />
-
-      <KeyboardAvoidingView
-        style={styles.keyboardView}
-        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+    <KeyboardAvoidingView
+      style={[styles.container, { backgroundColor: theme.colors.background }]}
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      keyboardVerticalOffset={0}
+    >
+      <ScrollView
+        style={styles.scrollView}
+        contentContainerStyle={styles.scrollContent}
+        keyboardShouldPersistTaps="handled"
+        showsVerticalScrollIndicator={true}
       >
-        <ScrollView
-          style={styles.scrollView}
-          contentContainerStyle={styles.scrollContent}
-          keyboardShouldPersistTaps="handled"
-        >
-          {renderStepContent()}
-        </ScrollView>
+        {/* Header */}
+        <View style={[styles.header, { backgroundColor: theme.colors.surface, borderBottomColor: theme.colors.border }]}>
+          <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
+            <Text style={[styles.backButtonText, { color: theme.colors.primary }]}>← Back</Text>
+          </TouchableOpacity>
+          <Text style={[styles.headerTitle, { color: theme.colors.text }]}>
+            Create Employee Account
+          </Text>
+          <View style={styles.placeholder} />
+        </View>
 
+        {/* Stepper */}
+        <Stepper steps={STEPS} currentStep={currentStep} />
+
+        {/* Form Content */}
+        <View style={styles.formContent}>
+          {renderStepContent()}
+        </View>
+
+        {/* Footer Buttons */}
         <View style={[styles.footer, { backgroundColor: theme.colors.surface, borderTopColor: theme.colors.border }]}>
-          <View style={styles.footerButtons}>
+          <View style={[styles.footerButtons, { justifyContent: currentStep > 1 ? 'space-between' : 'center' }]}>
             {currentStep > 1 && (
               <Button
                 title="Previous"
                 onPress={handlePrevious}
                 variant="outline"
-                style={styles.footerButton}
+                style={[styles.footerButton, styles.footerButtonFlex]}
               />
             )}
-            <View style={styles.spacer} />
+            {currentStep > 1 && <View style={styles.spacer} />}
             {currentStep < STEPS.length ? (
               <Button
                 title="Next"
                 onPress={handleNext}
-                style={styles.footerButton}
+                style={currentStep === 1 ? [styles.footerButton, styles.singleButton] : [styles.footerButton, styles.footerButtonFlex]}
               />
             ) : (
               <Button
                 title="Submit"
                 onPress={handleSubmit}
                 loading={loading}
-                style={styles.footerButton}
+                style={currentStep === 1 ? [styles.footerButton, styles.singleButton] : [styles.footerButton, styles.footerButtonFlex]}
               />
             )}
           </View>
         </View>
-      </KeyboardAvoidingView>
-    </View>
+      </ScrollView>
+    </KeyboardAvoidingView>
   );
 };
 
@@ -750,6 +756,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
+    borderBottomWidth: 1,
   },
   backButton: {
     padding: spacing.sm,
@@ -766,13 +773,14 @@ const styles = StyleSheet.create({
   placeholder: {
     width: 60,
   },
-  keyboardView: {
-    flex: 1,
-  },
   scrollView: {
     flex: 1,
   },
   scrollContent: {
+    flexGrow: 1,
+    paddingBottom: spacing.xl,
+  },
+  formContent: {
     padding: spacing.lg,
   },
   stepContent: {
@@ -844,15 +852,30 @@ const styles = StyleSheet.create({
     marginTop: spacing.xs,
   },
   footer: {
-    padding: spacing.md,
+    paddingVertical: spacing.md,
+    paddingHorizontal: spacing.lg,
     borderTopWidth: 1,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: -2,
+    },
+    shadowOpacity: 0.1,
+    shadowRadius: 3,
+    elevation: 5,
   },
   footerButtons: {
     flexDirection: 'row',
     alignItems: 'center',
   },
   footerButton: {
+    minHeight: 48,
+  },
+  footerButtonFlex: {
     flex: 1,
+  },
+  singleButton: {
+    paddingHorizontal: spacing.xl * 1.5,
   },
   spacer: {
     width: spacing.md,
