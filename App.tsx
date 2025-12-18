@@ -13,12 +13,14 @@ import DashboardScreen from '@/src/screens/Dashboard';
 import ProfileSettingScreen from '@/src/screens/ProfileSetting';
 import NotificationScreen from '@/src/screens/Notification';
 import MissedCallScreen from '@/src/screens/MissedCall';
+import SiteVisitScreen from '@/src/screens/SiteVisit';
 
 type RootStackParamList = {
   dashboard: undefined;
   profile: undefined;
   notification: undefined;
   missedCall: undefined;
+  siteVisit: undefined;
   splash: undefined;
   login: undefined;
   register: undefined;
@@ -113,6 +115,7 @@ export default function App() {
         forgotEmail: 'forgot-password',
         forgotOtp: 'forgot-password-otp',
         forgotReset: 'forgot-password-reset',
+        siteVisit: 'site-visit',
       },
     },
   };
@@ -135,6 +138,7 @@ export default function App() {
         <Stack.Screen name="profile" component={ProfileRoute} />
         <Stack.Screen name="notification" component={NotificationRoute} />
         <Stack.Screen name="missedCall" component={MissedCallRoute} />
+        <Stack.Screen name="siteVisit" component={SiteVisitRoute} />
       </Stack.Navigator>
     </NavigationContainer>
   );
@@ -157,6 +161,11 @@ function NotificationRoute({ navigation }: any) {
 function MissedCallRoute({ navigation }: any) {
   return <MissedCallScreen navigation={navigation} />;
 }
+
+function SiteVisitRoute({ navigation }: any) {
+  return <SiteVisitScreen navigation={navigation} />;
+}
+
 
 
 

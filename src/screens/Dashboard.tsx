@@ -167,7 +167,11 @@ export default function DashboardScreen({ navigation }: Props) {
                 </View>
 
                 {/* Call Details Card */}
-                <View style={styles.cardContainer}>
+                <TouchableOpacity
+                    activeOpacity={0.9}
+                    onPress={() => navigation.navigate('siteVisit')}
+                    style={styles.cardContainer}
+                >
                     <View style={styles.detailRow}>
                         <Text style={styles.detailLabel}>Name</Text>
                         <Text style={styles.detailValue}>Anish Pandey Kumar</Text>
@@ -189,9 +193,7 @@ export default function DashboardScreen({ navigation }: Props) {
                         <Text style={styles.detailValue}>Anugrah Homes</Text>
                     </View>
 
-                    {/* Decorative teal circle at bottom left corner like design */}
-                    <View style={styles.decorativeCircle} />
-                </View>
+                </TouchableOpacity>
 
                 {/* Spacing for bottom */}
                 <View style={{ height: 20 }} />
@@ -426,14 +428,5 @@ const styles = StyleSheet.create({
         color: '#555',
         fontWeight: '500',
     },
-    decorativeCircle: {
-        position: 'absolute',
-        bottom: -20,
-        left: -20,
-        width: 60,
-        height: 60,
-        borderRadius: 30,
-        backgroundColor: TEAL_COLOR,
-        opacity: 0.6,
-    }
+   
 });
