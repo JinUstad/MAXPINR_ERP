@@ -206,7 +206,7 @@ export default function DashboardScreen({ navigation }: Props) {
 const styles = StyleSheet.create({
     safeArea: {
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: '#ffff',
         paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
     },
     scrollContent: {
