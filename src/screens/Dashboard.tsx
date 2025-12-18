@@ -11,6 +11,7 @@ import {
     StatusBar,
 } from 'react-native';
 import { Ionicons, MaterialIcons, FontAwesome5, Foundation } from '@expo/vector-icons';
+import Sidebar from '../components/Sidebar';
 
 const TEAL_COLOR = '#20B2AA'; // Using the teal color from login for consistency/branding if needed, but design has specific colors
 const TEXT_DARK = '#091130';
@@ -28,13 +29,15 @@ type Props = {
 };
 
 export default function DashboardScreen({ navigation }: Props) {
+    const [isMenuVisible, setMenuVisible] = React.useState(false);
+
     return (
         <SafeAreaView style={styles.safeArea}>
             <StatusBar barStyle="dark-content" backgroundColor="#fff" />
             <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
                 {/* Header */}
                 <View style={styles.header}>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={() => setMenuVisible(true)}>
                         <Ionicons name="menu-outline" size={28} color="#333" />
                     </TouchableOpacity>
                     <View style={styles.headerRight}>
@@ -65,7 +68,11 @@ export default function DashboardScreen({ navigation }: Props) {
                 {/* Stats Grid */}
                 <View style={styles.statsGrid}>
                     {/* Inventories */}
-                    <View style={[styles.statCard, { backgroundColor: CARD_BG_BLUE, borderColor: '#cadbebb3' }]}>
+                    <TouchableOpacity
+                        activeOpacity={0.8}
+                        onPress={() => navigation.navigate('inventories')}
+                        style={[styles.statCard, { backgroundColor: CARD_BG_BLUE, borderColor: '#cadbebb3' }]}
+                    >
                         <View style={styles.statContent}>
                             <Text style={styles.statLabel}>Inventories</Text>
                             <Text style={styles.statValue}>4</Text>
@@ -73,10 +80,14 @@ export default function DashboardScreen({ navigation }: Props) {
                         <View style={[styles.statIconContainer, { backgroundColor: CARD_ICON_BLUE }]}>
                             <MaterialIcons name="inventory" size={20} color="#fff" />
                         </View>
-                    </View>
+                    </TouchableOpacity>
 
                     {/* Open Task */}
-                    <View style={[styles.statCard, { backgroundColor: CARD_BG_BEIGE, borderColor: '#ebdcc5' }]}>
+                    <TouchableOpacity
+                        activeOpacity={0.8}
+                        onPress={() => navigation.navigate('openTask')}
+                        style={[styles.statCard, { backgroundColor: CARD_BG_BEIGE, borderColor: '#ebdcc5' }]}
+                    >
                         <View style={styles.statContent}>
                             <Text style={styles.statLabel}>Open Task</Text>
                             <Text style={styles.statValue}>03</Text>
@@ -84,10 +95,14 @@ export default function DashboardScreen({ navigation }: Props) {
                         <View style={[styles.statIconContainer, { backgroundColor: CARD_ICON_ORANGE }]}>
                             <FontAwesome5 name="edit" size={16} color="#fff" />
                         </View>
-                    </View>
+                    </TouchableOpacity>
 
                     {/* Site Visits */}
-                    <View style={[styles.statCard, { backgroundColor: CARD_BG_CYAN, borderColor: '#ccebec' }]}>
+                    <TouchableOpacity
+                        activeOpacity={0.8}
+                        onPress={() => navigation.navigate('siteVisit')}
+                        style={[styles.statCard, { backgroundColor: CARD_BG_CYAN, borderColor: '#ccebec' }]}
+                    >
                         <View style={styles.statContent}>
                             <Text style={styles.statLabel}>Site Visits</Text>
                             <Text style={styles.statValue}>05</Text>
@@ -95,7 +110,7 @@ export default function DashboardScreen({ navigation }: Props) {
                         <View style={[styles.statIconContainer, { backgroundColor: CARD_ICON_CYAN }]}>
                             <Foundation name="map" size={20} color="#fff" />
                         </View>
-                    </View>
+                    </TouchableOpacity>
 
                     {/* Won Deal's */}
                     <View style={[styles.statCard, { backgroundColor: CARD_BG_GREEN, borderColor: '#cbe7cd' }]}>
@@ -144,7 +159,11 @@ export default function DashboardScreen({ navigation }: Props) {
                 </TouchableOpacity>
 
                 {/* Project Card */}
-                <View style={styles.cardContainer}>
+                <TouchableOpacity
+                    activeOpacity={0.9}
+                    onPress={() => navigation.navigate('inventories')}
+                    style={styles.cardContainer}
+                >
                     <View style={styles.projectHeader}>
                         <View style={styles.projectHeaderText}>
                             <Text style={styles.projectName}>SKY LINE AERO</Text>
@@ -164,7 +183,7 @@ export default function DashboardScreen({ navigation }: Props) {
                             <Text style={styles.projectDetailText}>20 plots (Grid: 20x20)</Text>
                         </View>
                     </View>
-                </View>
+                </TouchableOpacity>
 
                 {/* Call Details Card */}
                 <TouchableOpacity
@@ -198,7 +217,15 @@ export default function DashboardScreen({ navigation }: Props) {
                 {/* Spacing for bottom */}
                 <View style={{ height: 20 }} />
 
+                <View style={{ height: 20 }} />
+
             </ScrollView>
+
+            <Sidebar
+                visible={isMenuVisible}
+                onClose={() => setMenuVisible(false)}
+                navigation={navigation}
+            />
         </SafeAreaView>
     );
 }
@@ -428,5 +455,5 @@ const styles = StyleSheet.create({
         color: '#555',
         fontWeight: '500',
     },
-   
+
 });

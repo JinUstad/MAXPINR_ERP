@@ -83,7 +83,7 @@ export default function LoginScreen({ onRegister, onForgotPassword, onLogin }: P
                                 value={password}
                                 onChangeText={setPassword}
                                 onFocus={() => setPasswordFocused(true)}
-                                onBlur={() => setPasswordFocused(false)}
+                                onBlur={() => setPasswordFocused(true)}
                                 secureTextEntry
                                 autoCapitalize="none"
                                 autoComplete="password"

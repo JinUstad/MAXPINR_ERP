@@ -1,5 +1,7 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Platform } from 'react-native';
+
+
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
@@ -14,6 +16,20 @@ import ProfileSettingScreen from '@/src/screens/ProfileSetting';
 import NotificationScreen from '@/src/screens/Notification';
 import MissedCallScreen from '@/src/screens/MissedCall';
 import SiteVisitScreen from '@/src/screens/SiteVisit';
+import InventoriesScreen from '@/src/screens/Inventories';
+import InventriesDetailsScreen from '@/src/screens/InventoriesDetails';
+import OpenTaskScreen from '@/src/screens/OpenTask';
+import LeadsScreen from '@/src/screens/Leads';
+
+if (Platform.OS === 'web' && typeof document !== 'undefined') {
+  const style = document.createElement('style');
+  style.textContent = `
+    input:focus, textarea:focus, select:focus {
+      outline: none;
+    }
+  `;
+  document.head.appendChild(style);
+}
 
 type RootStackParamList = {
   dashboard: undefined;
@@ -21,6 +37,10 @@ type RootStackParamList = {
   notification: undefined;
   missedCall: undefined;
   siteVisit: undefined;
+  inventories: undefined;
+  inventriesDetails: { title: string } | undefined;
+  openTask: undefined;
+  leads: undefined;
   splash: undefined;
   login: undefined;
   register: undefined;
@@ -116,6 +136,10 @@ export default function App() {
         forgotOtp: 'forgot-password-otp',
         forgotReset: 'forgot-password-reset',
         siteVisit: 'site-visit',
+        inventories: 'inventories',
+        inventriesDetails: 'inventries-details',
+        openTask: 'open-task',
+        leads: 'leads',
       },
     },
   };
@@ -139,6 +163,10 @@ export default function App() {
         <Stack.Screen name="notification" component={NotificationRoute} />
         <Stack.Screen name="missedCall" component={MissedCallRoute} />
         <Stack.Screen name="siteVisit" component={SiteVisitRoute} />
+        <Stack.Screen name="inventories" component={InventoriesRoute} />
+        <Stack.Screen name="inventriesDetails" component={InventriesDetailsRoute} />
+        <Stack.Screen name="openTask" component={OpenTaskRoute} />
+        <Stack.Screen name="leads" component={LeadsRoute} />
       </Stack.Navigator>
     </NavigationContainer>
   );
@@ -164,6 +192,22 @@ function MissedCallRoute({ navigation }: any) {
 
 function SiteVisitRoute({ navigation }: any) {
   return <SiteVisitScreen navigation={navigation} />;
+}
+
+function InventoriesRoute({ navigation }: any) {
+  return <InventoriesScreen navigation={navigation} />;
+}
+
+function InventriesDetailsRoute({ navigation, route }: any) {
+  return <InventriesDetailsScreen navigation={navigation} route={route} />;
+}
+
+function OpenTaskRoute({ navigation }: any) {
+  return <OpenTaskScreen navigation={navigation} />;
+}
+
+function LeadsRoute({ navigation }: any) {
+  return <LeadsScreen navigation={navigation} />;
 }
 
 
