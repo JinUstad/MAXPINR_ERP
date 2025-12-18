@@ -195,7 +195,7 @@ export default function DashboardScreen({ navigation }: Props) {
 
                 </TouchableOpacity>
 
-                {/* Spacing for bottom jjjj*/}
+                {/* Spacing for bottom */}
                 <View style={{ height: 20 }} />
 
             </ScrollView>
