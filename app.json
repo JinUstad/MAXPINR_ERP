@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "ERP",
-    "slug": "ERP",
+    "name": "Maxpine ERP",
+    "slug": "maxpine-erp",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",

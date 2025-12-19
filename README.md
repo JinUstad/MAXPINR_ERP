@@ -1,52 +1,94 @@
-# Welcome to your Expo app 👋
+# Maxpine ERP
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Maxpine ERP is a comprehensive Enterprise Resource Planning (ERP) application built with [React Native](https://reactnative.dev/) and [Expo](https://expo.dev/). It is designed to manage various business processes including inventory, tasks, leads, and platform integrations across Android, iOS, and Web platforms.
 
-## Get started
+## 🚀 Features
 
-1. Install dependencies
+-   **Dashboard**: Centralized hub with quick access to recent activities and key metrics.
+-   **Inventory Management**: View and manage inventory locations and detailed project inventories (`Inventories`, `InventoriesDetails`).
+-   **Task Management**: unique `OpenTask` screen with tabbed views for All Tasks, Calls, Mails, and Meetings.
+-   **Lead & Deal Management**: Dedicated sections for managing leads and deals.
+-   **Platform Integration**: manage integrations with Ad Platforms, Calling Platforms, Website Integrations, and Webhooks.
+-   **Unit Management**: Manage plot units (`PlotUnit`) and unit confirmations (`ConfirmUnit`).
+-   **Site Visits**: Schedule and track site visits.
+-   **User Management**: Authentication flows (Login, Register), Profile Settings, and Notification management.
+-   **Responsive Design**: Built to work seamlessly on Mobile (Android/iOS) and Web.
+-   **Theming**: Global color theme management for consistent UI.
 
-   ```bash
-   npm install
-   ```
+## 🛠 Tech Stack
 
-2. Start the app
+-   **Framework**: [React Native](https://reactnative.dev/) (v0.81.5)
+-   **Platform**: [Expo](https://expo.dev/) (v54.0.29)
+-   **Language**: [TypeScript](https://www.typescriptlang.org/)
+-   **Navigation**: [React Navigation](https://reactnavigation.org/) (v7) & [Expo Router](https://docs.expo.dev/router/introduction)
+-   **UI Library**: Custom components with global theming
+-   **State Management**: React Hooks
 
-   ```bash
-   npx expo start
-   ```
+## 📋 Prerequisites
 
-In the output, you'll find options to open the app in a
+Before you begin, ensure you have met the following requirements:
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+-   Node.js (LTS version recommended)
+-   npm or yarn
+-   [Expo Go](https://expo.dev/client) app installed on your physical device (for testing on mobile) or an Android Emulator/iOS Simulator.
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+## 📦 Installation
 
-## Get a fresh project
+1.  **Clone the repository**:
+    ```bash
+    git clone <repository_url>
+    cd Maxpine_ERP
+    ```
 
-When you're ready, run:
+2.  **Install dependencies**:
+    ```bash
+    npm install
+    ```
+
+## 🏃‍♂️ Running the App
+
+To start the development server:
 
 ```bash
-npm run reset-project
+npx expo start
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+This will give you options to run the app:
 
-## Learn more
+-   **Press `a`** to open in Android Emulator.
+-   **Press `i`** to open in iOS Simulator.
+-   **Press `w`** to open in Web Browser.
+-   **Scan the QR code** with the Expo Go app to run on your physical device.
 
-To learn more about developing your project with Expo, look at the following resources:
+### Other Scripts
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+-   `npm run android`: Run directly on Android.
+-   `npm run ios`: Run directly on iOS.
+-   `npm run web`: Run directly on Web.
+-   `npm run build`: Export the app for web platform.
 
-## Join the community
+## 📂 Project Structure
 
-Join our community of developers creating universal apps.
+```
+Maxpine_ERP/
+├── src/
+│   ├── components/      # Reusable UI components
+│   ├── constants/       # App constants including Theme configuration
+│   ├── hooks/           # Custom React hooks
+│   └── screens/         # Application screens (Dashboard, Login, etc.)
+├── assets/              # Images, fonts, and other static assets
+├── App.tsx              # Main application entry point
+├── app.json             # Expo configuration
+├── package.json         # Project dependencies and scripts
+└── tsconfig.json        # TypeScript configuration
+```
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+## 🤝 Contributing
 
+Contributions are welcome! Please feel free to submit a Pull Request.
 
+1.  Fork the project
+2.  Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3.  Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4.  Push to the branch (`git push origin feature/AmazingFeature`)
+5.  Open a Pull Request
